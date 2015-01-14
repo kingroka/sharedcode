@@ -5,7 +5,7 @@ import java.util.Random;
 public class Dna {
 	String code;
 	public int group_num;
-
+	//constructor which takes a string of A's T's G's and C's; group_num for calculating values
 	public Dna(String code, int group_num) {
 		this.code = code;
 		// System.out.println("code:" + code);
@@ -13,7 +13,7 @@ public class Dna {
 		genIndInts();
 		this.group_num = group_num;
 	}
-
+	//constuctor for generating random code based off of size; group_num for calculating values
 	public Dna(int size, int group_num) {
 		code = genDna(size);
 		// System.out.println("code:" + code);
@@ -21,7 +21,7 @@ public class Dna {
 		genIndInts();
 		this.group_num = group_num;
 	}
-
+	//returns code in string form
 	public String getCode() {
 		return code;
 	}
@@ -29,15 +29,15 @@ public class Dna {
 	public void setCode(String code) {
 		this.code = code;
 	}
-
+	//returns dna spliced with antother; original refers to the percent(0-100) likeness to the parent
 	public Dna splice(Dna dna, float original) {
 		return splice(dna.getCode(), original);
 	}
-
+	//dna splice with mutation percent rate (0 - 100)
 	public Dna splice(Dna dna, float original, float mutate) {
 		return splice(dna.getCode(), original, mutate);
 	}
-
+	//returns value from start grouping and end grouping
 	public int getTotal(int start, int fin) {
 		int gene = 0;
 		for (int i = 0; i < fin - start; i++) {
@@ -49,7 +49,7 @@ public class Dna {
 		}
 		return gene;
 	}
-
+	//splice with string
 	public Dna splice(String dna, float original) {
 		String spliced = " ";
 		for (int i = 0; i < code.length(); i += group_num) {
@@ -62,7 +62,7 @@ public class Dna {
 		}
 		return new Dna(spliced.trim(), group_num);
 	}
-
+	//splice with string and mutation
 	public Dna splice(String dna, float original, float mutation) {
 		String spliced = " ";
 		for (int i = 0; i < code.length(); i += group_num) {
@@ -80,7 +80,7 @@ public class Dna {
 		}
 		return new Dna(spliced.trim(), group_num);
 	}
-
+	//splice with string but replace singular letters other than whole groups; can lead to more similar children
 	public Dna splice(String dna, float original, float mutation, boolean single) {
 		String spliced = " ";
 		try{
@@ -118,11 +118,12 @@ public class Dna {
 		}
 		return new Dna(spliced.trim(), group_num);
 	}
-
+	
+	//random dna string as mutation; used to replace groups
 	public String genMutation() {
 		return genDna(group_num);
 	}
-
+	//random letter for mutation; used to replace letters
 	public String genMutationS() {
 		return genDna(1);
 	}
@@ -130,7 +131,7 @@ public class Dna {
 	public static String[] letters = { "T", "C", "G", "A" };
 	public static int[] values = { 20, 3, 7, 1 };
 	public static Random r;
-
+	//generate random dna string
 	public static String genDna(int length) {
 		r = new Random();
 		String code = " ";
@@ -143,7 +144,7 @@ public class Dna {
 	}
 
 	public int dna_code[];
-
+	//generate integer values per group
 	public void genInts(int group_num) {
 		dna_code = new int[code.length() / group_num];
 		int temp = 0;
@@ -171,13 +172,10 @@ public class Dna {
 			}
 		}
 
-		for (int i : dna_code) {
-			// System.out.print(i + " ");
-		}
 	}
 
 	public int ind_code[];
-
+	//used for generating values of dna for visual representation; stores in ind_code
 	public void genIndInts() {
 		ind_code = new int[code.length()];
 		int temp = 0;
@@ -203,9 +201,6 @@ public class Dna {
 			}
 		}
 
-		for (int i : ind_code) {
-			// System.out.print(i + " ");
-		}
 	}
 
 }
