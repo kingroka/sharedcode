@@ -1,5 +1,5 @@
-# Shared Code - by kingroka123
-##### - For your viewing pleasure
+# Shared Code 
+##### - by kingroka123
 
 ####Dna Sim
 ***
